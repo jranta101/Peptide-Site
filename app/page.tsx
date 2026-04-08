@@ -34,7 +34,15 @@ const faqs = [
   },
 ];
 
-export default function HomePage() {
+type PageProps = {
+  searchParams?: {
+    submitted?: string;
+  };
+};
+
+export default function HomePage({ searchParams }: PageProps) {
+  const submitted = searchParams?.submitted === "1";
+
   return (
     <main className="site">
       <header className="topbar">
@@ -213,6 +221,16 @@ export default function HomePage() {
               Access requests are reviewed selectively. Approved inquiries may receive
               current availability, batch information, and next-step procurement details.
             </p>
+
+            {submitted && (
+              <div className="card" style={{ marginTop: "20px" }}>
+                <h3 style={{ marginBottom: "10px" }}>Request received</h3>
+                <p>
+                  Your inquiry has been submitted successfully. If approved, you will
+                  receive current availability, batch information, and next-step details.
+                </p>
+              </div>
+            )}
           </div>
 
           <form
@@ -277,7 +295,11 @@ export default function HomePage() {
             </label>
 
             <input type="hidden" name="_subject" value="New Institutional Access Request" />
-            <input type="hidden" name="_redirect" value="https://project-566hq.vercel.app/" />
+            <input
+              type="hidden"
+              name="_redirect"
+              value="https://project-566hq.vercel.app/?submitted=1#contact"
+            />
 
             <button type="submit" className="btn btn-light">
               Submit Inquiry
