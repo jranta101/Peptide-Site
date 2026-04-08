@@ -269,6 +269,15 @@ export default function HomePage({ searchParams }: PageProps) {
               <option value="ongoing">Ongoing procurement</option>
             </select>
 
+            <select name="timeline" defaultValue="" required>
+              <option value="" disabled>
+                Procurement timeline
+              </option>
+              <option value="immediate">Immediate</option>
+              <option value="1-2 weeks">1–2 weeks</option>
+              <option value="exploring">Exploring only</option>
+            </select>
+
             <input
               type="text"
               name="contact_method"
@@ -304,6 +313,10 @@ export default function HomePage({ searchParams }: PageProps) {
             <button type="submit" className="btn btn-light">
               Submit Inquiry
             </button>
+
+            <p className="notice" style={{ marginTop: "10px" }}>
+              Approved inquiries may receive private follow-up with availability and procurement details.
+            </p>
           </form>
         </div>
       </section>
